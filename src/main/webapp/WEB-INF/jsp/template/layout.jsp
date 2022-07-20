@@ -18,13 +18,13 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="bg-success bg-opacity-25">
+		<header class="bg-secondary bg-opacity-25">
 			<jsp:include page="../include/gnb.jsp"/>
 		</header>
 		<section class="content">
 			<jsp:include page="../${viewName}.jsp"/>
 		</section>
-		<footer class="bg-success">
+		<footer>
 			<jsp:include page="../include/footer.jsp"/>
 		</footer>
 	</div>

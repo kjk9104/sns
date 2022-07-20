@@ -13,3 +13,7 @@ footer{ height : 100px;}
 footer>div{
 	height : 100px;
 }
+#sign_up_box{
+	width : 500px;
+	height: 500px;
+}
