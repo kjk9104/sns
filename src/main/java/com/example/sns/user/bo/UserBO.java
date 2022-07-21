@@ -17,4 +17,23 @@ public class UserBO {
 		return userDAO.selectUserList();
 	}
 	
+	public boolean getUserById(String loginId) {
+		return userDAO.selectUserById(loginId);
+		
+	}
+
+	public void addUser(
+			String loginId
+			,String encryptPassword
+			,String name
+			,String email
+			) {
+			userDAO.insertUser(loginId, encryptPassword, name, email);
+	}
+
+
+
+
+
+
 }

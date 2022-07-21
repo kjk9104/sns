@@ -11,6 +11,11 @@
 			 <input name="loginId" class="form-control-sm" type="text" placeholder="아이디를 입력해주세요">
 			 <button id="chk_duplicated" type="button" class="btn btn-primary text-light">중복 확인</button>
 			 </div>
+			 <div>
+			 	<div id="idCheckLength" class="small text-danger d-none">ID을 4자 이상 입력하세요</div>
+				<div id="idCheckduplicated" class="small text-danger d-none">이미 사용중인 아이디 입니다.</div>
+				<div id="idCheckOk" class="small text-success d-none">사용 가능한 아이디 입니다.</div></td>
+			 </div>
 			 <span>password</span>
 			 <input name="password" id="password" class="form-control-sm " type="password" placeholder="비밀번호를 입력해주세요">
 			 <span>confirm password</span>
@@ -28,13 +33,36 @@ $(document).ready(function(){
 	$("#chk_duplicated").on('click', function(){
 		
 		let loginId = $('input[name=loginId]').val().trim();
+		$('#idCheckLength').addClass('d-none');
+		$('#idCheckduplicated').addClass('d-none');
+		$('#idCheckOk').addClass('d-none');
 		
 		if(loginId == ""){
 			alert("아이디를 입력해주세요");
 			return;	
 		}
-		
-		
+		if(loginId.length < 4){
+			$("#idCheckLength").removeClass('d-none');
+			return;
+		}
+		$.ajax({
+			url : "/user/is_duplicated_id"
+			,data : { "loginId" : loginId }
+			,success :  function(data){
+				if(data.result == true){
+// 					중복인 경우
+					$("#idCheckduplicated").removeClass('d-none');
+				} else if (data.result == false){
+					// 중복이 아닌 경우 => 사용 가능한 아이디
+					$('#idCheckOk').removeClass('d-none');		
+				} else {
+					alert("아이디 중복체크 실패 입니다.");
+				}
+			}
+			, error : function(e){
+				alert("통신의 오류입니다 관리자에게 문의해 주세요.");
+			}
+		})
 	});
 	
 	$("#sign_up").on('submit',function(){
@@ -49,28 +77,46 @@ $(document).ready(function(){
 		
 		if(loginId == ""){
 			alert("아이디를 입력해주세요");
-			return;	
+			return false;	
 		}
 		if(password == ""){
 			alert("아이디를 입력해주세요");
-			return;	
+			return false;	
 		}
 		if(confirmPassword == ""){
 			alert("아이디를 입력해주세요");
-			return;	
+			return false;	
 		}
 		if(password != confirmPassword){
 			alert("비밀번호를 확인해 주세요");
-			return;	
+			return false;	
 		}
 		if(name == ""){
 			alert("아이디를 입력해주세요");
-			return;	
+			return false;	
 		}
 		if(email == ""){
 			alert("아이디를 입력해주세요");
-			return;	
+			return false;	
 		}
+		
+		if($('#idCheckOk').hasClass('d-none')) {
+			alert("아이디 중복확인을 해주세요.");
+			return false;
+		}
+		
+		let url = $(this).attr("action"); // form태그에 있는 action값을 가져옴
+		let params = $(this).serialize();
+		
+		$.post(url, params)
+		.done(function(data) {
+			if(data.result == "success") {
+				alert("회원가입을 환영합니다. 로그인을 해주세요");
+				location.href = "/user/sign_in_view";
+			} else {
+				alert("회원가입에 실패했습니다. 다시 시도해 주세요");
+			}
+		});
 	});
 });
 </script>
