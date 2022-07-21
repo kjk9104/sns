@@ -12,7 +12,7 @@ public class UserController {
 	// http://localhost:8080/user/sign_up_view
 	@RequestMapping("/sign_up_view")
 	public String signUpView(Model model) {
-		model.addAttribute("viewName","user/sign_up_view");
+		model.addAttribute("viewName","user/sign_up");
 		return"/template/layout";
 	}
 }
