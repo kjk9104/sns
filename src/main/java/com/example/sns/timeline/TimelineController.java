@@ -14,4 +14,5 @@ public class TimelineController {
 			model.addAttribute("viewName", "timeline/timeline_list");
 			return "/template/layout";
 		}
+	
 }

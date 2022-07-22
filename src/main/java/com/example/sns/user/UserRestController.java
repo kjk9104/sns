@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.sns.user.bo.UserBO;
 import com.example.sns.user.model.User;
 
-@RestController
 @RequestMapping("/user")
+@RestController
 public class UserRestController {
 	@Autowired
 	private UserBO userBO;
@@ -47,17 +47,23 @@ public class UserRestController {
 			,@RequestParam("name") String name
 			,@RequestParam("email") String email
 			){
-		// 비밀번호 암호화(md5,SHA256, 512)
 		String encryptPassword = com.example.sns.common.EncryptUtils.md5(password);
 		
-		// db insert
 		userBO.addUser(loginId, encryptPassword, name, email);
 		
 		
-		// 결과 리턴
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
 		return result;
+	}
+	
+	@PostMapping("/sign_in")
+	public Map<String, Object> signIn(){
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		return result;
+		
 	}
 }

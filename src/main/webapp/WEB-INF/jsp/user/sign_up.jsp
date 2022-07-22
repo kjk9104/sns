@@ -67,7 +67,7 @@ $(document).ready(function(){
 	});
 	
 	// 회원 가입
-	$("#sign_up").on('submit',function(){
+	$("#sign_up").on('submit',function(e){
 		
 		e.preventDefault();
 		
