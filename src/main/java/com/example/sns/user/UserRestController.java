@@ -59,6 +59,5 @@ public class UserRestController {
 		result.put("result", "success");
 		
 		return result;
-		
 	}
 }

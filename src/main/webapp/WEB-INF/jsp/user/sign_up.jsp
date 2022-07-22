@@ -25,6 +25,7 @@
 			 <span>이메일</span>
 			 <input name="email" class="form-control-sm" type="text" placeholder="이메일을 입력해주세요">
 			 <input type="submit" value="회원가입" class="btn btn-primary">
+			 <a href="/user/sign_in_view">로그인 페이지 이동</a>
 			</div>
 		</div>
 	</form>
@@ -65,6 +66,7 @@ $(document).ready(function(){
 		})
 	});
 	
+	// 회원 가입
 	$("#sign_up").on('submit',function(){
 		
 		e.preventDefault();
@@ -79,24 +81,22 @@ $(document).ready(function(){
 			alert("아이디를 입력해주세요");
 			return false;	
 		}
-		if(password == ""){
-			alert("아이디를 입력해주세요");
-			return false;	
-		}
-		if(confirmPassword == ""){
-			alert("아이디를 입력해주세요");
-			return false;	
+		if(password == "" || confirmPassword == ""){
+			alert("비밀번호를 입력하세요");
+			return false;
 		}
 		if(password != confirmPassword){
-			alert("비밀번호를 확인해 주세요");
+			$('#password').val("");
+			$('#confirmPassword').val("");
+			alert("비밀번호가 일치하지 않습니다.");
 			return false;	
 		}
 		if(name == ""){
-			alert("아이디를 입력해주세요");
+			alert("이름을 입력해주세요");
 			return false;	
 		}
 		if(email == ""){
-			alert("아이디를 입력해주세요");
+			alert("email 입력해주세요");
 			return false;	
 		}
 		
@@ -105,7 +105,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		let url = $(this).attr("action"); // form태그에 있는 action값을 가져옴
+		let url = $(this).attr("action");
 		let params = $(this).serialize();
 		
 		$.post(url, params)

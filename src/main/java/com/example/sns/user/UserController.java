@@ -15,4 +15,11 @@ public class UserController {
 		model.addAttribute("viewName","user/sign_up");
 		return"/template/layout";
 	}
+	
+	// http://localhost:8080/user/sign_in_view
+	@RequestMapping("/sign_in_view")
+	public String signInView(Model model) {
+		model.addAttribute("viewName","user/sign_in");
+		return"/template/layout";
+	}
 }
