@@ -82,10 +82,15 @@ $(document).ready(function(){
 		
 		if(writeTextArea == ""){
 			alert("내용을 입력해 주세요");
+			return false;
 		}
 		let formData = new FormData();
 		formData.append("writeTextArea", writeTextArea);
 		formData.append("file", $('#file')[0].files[0]);
+		
+		console.log(writeTextArea);
+		console.log(file);
+		console.log(formData);
 		
 		$.ajax({
 			type : "POST"

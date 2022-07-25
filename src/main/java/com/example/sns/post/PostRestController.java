@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.sns.post.bo.PostBO;
 
@@ -22,8 +23,8 @@ public class PostRestController {
 	
 	@PostMapping("/post_create")
 	public Map<String, Object> postCreate(
-			@RequestParam("content") String content
-			,@RequestParam("imagePath") String imagePath
+			@RequestParam("writeTextArea") String content
+			,@RequestParam(value="file", required=false) MultipartFile imagePath
 			,HttpSession session
 			){
 		Map<String, Object> result = new HashMap<>();
@@ -39,9 +40,9 @@ public class PostRestController {
 		int userId = (int)userIdObject;
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
+		postBO.addPost(content, imagePath);
 		postBO.addPost(userId, content, imagePath);
 		
-		result.put("result", "success");
 		
 		return result;
 	} 

@@ -45,6 +45,6 @@
  		FROM
  			`user`
  		WHERE
- 			`loginId`=#{loginId} AND `password` = #{password}
+ 			`loginId`=#{loginId} AND `password` = #{encryptPassword}
  	</select>
  </mapper>

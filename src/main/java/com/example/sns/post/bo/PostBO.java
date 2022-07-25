@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.sns.post.dao.PostDAO;
 import com.example.sns.post.model.Post;
@@ -18,8 +19,12 @@ public class PostBO {
 		postDAO.insertPost(userId, content, imagePath);
 	}
 	
-	public List<Post> getPost(){
-		return postDAO.selectPost();
+	public void addPost(String content, MultipartFile imagePath) {
+		postDAO.insertPost(content, imagePath);
+	}
+	
+	public List<Post> getPostList(){
+		return postDAO.selectPostList();
 		
 	}
 }

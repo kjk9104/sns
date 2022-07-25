@@ -61,10 +61,9 @@ public class UserRestController {
 		return result;
 	}
 	
-//	value="/command.do", method=RequestMethod.POST
 	@PostMapping("/sign_in")
 	public Map<String, Object> signIn(
-			@RequestParam("loninId") String loninId
+			@RequestParam("loginId") String loninId
 			,@RequestParam("password") String password
 			,HttpServletRequest request
 			){

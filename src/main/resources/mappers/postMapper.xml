@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.example.sns.post.dao">
+ <mapper namespace="com.example.sns.post.dao.PostDAO">
  	<insert id="insertPost" parameterType="Map">
  		INSERT INTO `post`
  			(
@@ -16,15 +16,20 @@
 				#{userId}
 				,#{content}
 				,#{imgePath}
-				,#{createdAt}
-				,#{updatedAt}
+				,NOW()
+ 				,NOW()
  			)
  	</insert>
- 	<select id="selectPost" resultType="com.example.sns.post.model.Post">
- 		SELECT 
-			*
+ 	<select id="selectPostList" resultType="com.example.sns.post.model.Post">
+	 	SELECT 
+	 			`id`
+				,`userId`
+				,`content`
+				,`imagePath`
+				,`createdAt`
+				,`updatedAt`
 		FROM
-			`post`;
-		ORDER BY `id` DESC;
+				`post`
+		ORDER BY `id`  DESC;
  	</select>
  </mapper>

@@ -21,9 +21,7 @@ public class TimelineController {
 		@RequestMapping("/timeline_list_view")
 		public String postCreateView(Model model) {
 			
-			List<Post> postList= postBO.getPost();
-			
-			
+			List<Post> postList= postBO.getPostList();
 			
 			model.addAttribute("postList", postList);
 			
