@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <div  class="d-flex justify-content-center">
 	<div class="contents-box">
 		<div class="write-box border rounded m-3">
@@ -22,11 +24,28 @@
 			</div>
 			
 		</div>
+		<%-- 타임라인 영역 --%>
+		<div>
+			<header>
+				<span>marobiana</span>
+			</header>
+			
+			<content>
+				 <c:forEach var="post" items="${postList}">
+					 <div>
+					 	<samp>${post.content}</samp></a>
+					 	<samp>${post.imgePath}</samp><br>
+					 </div> 
+				 </c:forEach>
+			</content>
+			
+			<comment>
+			</comment>
+		</div>
 	</div>
-	
-	<%-- 타임라인 영역 --%>
-	
 </div>
+
+	
 <script>
 $(document).ready(function(){
 	// 파일 업도르 이미지 클릭 => input type="file" 숨어있던 창이 열림

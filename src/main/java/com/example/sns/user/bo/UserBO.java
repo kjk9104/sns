@@ -32,7 +32,9 @@ public class UserBO {
 	}
 
 
-
+	public User getUserByIdAndPassword(String loginId, String encryptPassword) {
+		return userDAO.selectUserByIdAndPassword(loginId, encryptPassword);
+	}
 
 
 

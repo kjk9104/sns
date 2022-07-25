@@ -20,6 +20,7 @@ $(document).ready(function(){
 		let loninId = $('#loninId').val().trim();
 		let pasworrd = $('#pasworrd').val().trim();
 		
+		
 		if(loninId == ""){
 			alert("로그인 아이디를 입력하세요");
 			return false;
@@ -30,17 +31,24 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		
 		let url = $(this).attr('action');
 		let params = $(this).serialize();
 		
-		$.post(urlm params)
+		console.log(url);
+		console.log(params);
+		
+
+		$.post(url, params)
 		.done(function(data){
-			if(data.result == "seccess"){
-				location.href = "/timeline/timeline_list";
+			if(data.result == "success"){
+				location.href = "/timeline/timeline_list_view";
 			}else{
 				alert(data.errorMessage);
 			}
-		})
+		});
+		
+		
 		
 	});
 });

@@ -20,5 +20,11 @@
 				,#{updatedAt}
  			)
  	</insert>
- 
+ 	<select id="selectPost" resultType="com.example.sns.post.model.Post">
+ 		SELECT 
+			*
+		FROM
+			`post`;
+		ORDER BY `id` DESC;
+ 	</select>
  </mapper>

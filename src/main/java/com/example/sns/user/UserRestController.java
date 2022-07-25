@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,12 +61,31 @@ public class UserRestController {
 		return result;
 	}
 	
+//	value="/command.do", method=RequestMethod.POST
 	@PostMapping("/sign_in")
-	public Map<String, Object> signIn(){
+	public Map<String, Object> signIn(
+			@RequestParam("loninId") String loninId
+			,@RequestParam("password") String password
+			,HttpServletRequest request
+			){
+		
+		String encryptPassword = com.example.sns.common.EncryptUtils.md5(password);
 		
 		Map<String, Object> result = new HashMap<>();
+		User user = userBO.getUserByIdAndPassword(loninId, encryptPassword);
 		
+		if(user != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userLoginId", user.getLoginId());
+			session.setAttribute("userName", user.getName());
+			
+			result.put("result", "success");
+		} else {
+			result.put("errorMessage", "존재하지 않는 사용자입니다. 관리자에게 문의해주세요.");
+		}
+		
+		result.put("result", "success");
 		return result;
-		
 	}
 }
