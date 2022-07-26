@@ -19,7 +19,7 @@ public class PostBO {
 	private PostDAO postDAO;
 	
 	public void addPost(int userId, String userLoginId, String content, MultipartFile file) {
-		String imagePath ="null";
+		String imagePath = null;
 		
 		if(file != null) {
 			imagePath = fileManager.saveFile(userLoginId, file);

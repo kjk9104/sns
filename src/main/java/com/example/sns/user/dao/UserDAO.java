@@ -12,7 +12,7 @@ public interface UserDAO {
 
 	public List<User> selectUserList();
 	
-	public boolean selectUserById(String loginId);
+	public boolean selectUserByLoginId(String loginId);
 	
 	public void insertUser(
 			@Param("loginId") String loginId
@@ -22,4 +22,6 @@ public interface UserDAO {
 			);
 	
 	public User selectUserByIdAndPassword(@Param("loginId")String loginId, @Param("encryptPassword")String encryptPassword);
+	
+	public User selectUserById(int id);
 }

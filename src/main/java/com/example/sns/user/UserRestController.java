@@ -35,7 +35,7 @@ public class UserRestController {
 	public Map<String, Object> is_duplicated_id(
 			@RequestParam("loginId") String loginId
 			){
-			boolean existLoginId = userBO.getUserById(loginId);
+			boolean existLoginId = userBO.getUserByLoginId(loginId);
 			Map<String ,Object> result = new HashMap<>();
 			
 			result.put("result", existLoginId);

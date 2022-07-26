@@ -17,8 +17,8 @@ public class UserBO {
 		return userDAO.selectUserList();
 	}
 	
-	public boolean getUserById(String loginId) {
-		return userDAO.selectUserById(loginId);
+	public boolean getUserByLoginId(String loginId) {
+		return userDAO.selectUserByLoginId(loginId);
 		
 	}
 
@@ -36,6 +36,8 @@ public class UserBO {
 		return userDAO.selectUserByIdAndPassword(loginId, encryptPassword);
 	}
 
-
+	public User getUserById(int id) {
+		return userDAO.selectUserById(id);
+	}
 
 }

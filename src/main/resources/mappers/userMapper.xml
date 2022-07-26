@@ -9,7 +9,7 @@
  		FROM
  			`user`
  	</select>
- 	<select id="selectUserById" parameterType="String" resultType="boolean">
+ 	<select id="selectUserByLoginId" parameterType="String" resultType="boolean">
  		SELECT
  			COUNT(*)
  		FROM
@@ -41,10 +41,30 @@
  	
  	<select id="selectUserByIdAndPassword" parameterType="Map"  resultType="com.example.sns.user.model.User">
  		SELECT
- 			*
+ 			`id`
+ 			,`loginId`
+ 			,`password`
+ 			,`name`
+ 			,`email`
+ 			,`createdAt`
+			,`updatedAt`
  		FROM
  			`user`
  		WHERE
  			`loginId`=#{loginId} AND `password` = #{encryptPassword}
+ 	</select>
+ 	<select id="selectUserById"  parameterType="int" resultType="com.example.sns.user.model.User">
+ 		SELECT
+ 			`id`
+ 			,`loginId`
+ 			,`password`
+ 			,`name`
+ 			,`email`
+ 			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`id`=#{Id}
  	</select>
  </mapper>

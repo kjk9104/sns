@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileManagerService {
-	public final static String FILE_UPLODE_PATH = "D:\\kyu\\Spring_project\\sns\\workspace\\imagese/";
+	public final static String FILE_UPLODE_PATH = "D:\\kyu\\Spring_project\\sns\\images/";
 
 	
 	public String saveFile(String userLoginId, MultipartFile file) {
