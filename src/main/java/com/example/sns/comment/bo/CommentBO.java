@@ -1,5 +1,7 @@
 package com.example.sns.comment.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +15,9 @@ public class CommentBO {
 	public void getCommentByPostIdanduserIdandContent(int postId,int userId,String content) {
 		commentDAO.insertCommentByPostIdanduserIdandContent(postId,userId,content);
 	};
+	
+	// postId -> List<CommentView> => comment 패키지에서
+	public List<CommentView> generateCommentVeiwListByPostId(int postId){
+		List<Comment> commentList = getCommentByPostIdanduserIdandContent(postId);
+	}
 }
