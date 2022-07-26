@@ -7,7 +7,7 @@
  			(
 				`userId`
 				,`content`
-				,`imgePath`
+				,`imagePath`
 				,`createdAt`
 				,`updatedAt`
  			)
@@ -15,7 +15,7 @@
  			(
 				#{userId}
 				,#{content}
-				,#{imgePath}
+				,#{imagePath}
 				,NOW()
  				,NOW()
  			)
@@ -32,4 +32,6 @@
 				`post`
 		ORDER BY `id`  DESC;
  	</select>
+ 	
+
  </mapper>

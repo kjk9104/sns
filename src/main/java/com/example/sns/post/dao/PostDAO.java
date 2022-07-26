@@ -11,16 +11,14 @@ import com.example.sns.post.model.Post;
 @Repository
 public interface PostDAO {
 
-//	public void insertPost( 
-//			@Param("userId") int userId
-//			,@Param("content") String content
-//			,@Param("imagePath") String imagePath
-//			);
-	
 	public void insertPost( 
-			@Param("content") String content
-			,@Param("imagePath") MultipartFile imagePath
+			@Param("userId") int userId
+			,@Param("content") String content
+			,@Param("imagePath") String imagePath
 			);
 	
+	
 	public List<Post> selectPostList();
+	
+	public Post selectPostById(int id);
 }

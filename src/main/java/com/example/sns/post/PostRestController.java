@@ -24,7 +24,7 @@ public class PostRestController {
 	@PostMapping("/post_create")
 	public Map<String, Object> postCreate(
 			@RequestParam("writeTextArea") String content
-			,@RequestParam(value="file", required=false) MultipartFile imagePath
+			,@RequestParam(value="file", required=false) MultipartFile file
 			,HttpSession session
 			){
 		Map<String, Object> result = new HashMap<>();
@@ -40,8 +40,7 @@ public class PostRestController {
 		int userId = (int)userIdObject;
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
-		postBO.addPost(content, imagePath);
-		postBO.addPost(userId, content, imagePath);
+		postBO.addPost(userId,userLoginId, content, file);
 		
 		
 		return result;

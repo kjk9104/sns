@@ -84,7 +84,6 @@ public class UserRestController {
 			result.put("errorMessage", "존재하지 않는 사용자입니다. 관리자에게 문의해주세요.");
 		}
 		
-		result.put("result", "success");
 		return result;
 	}
 }
