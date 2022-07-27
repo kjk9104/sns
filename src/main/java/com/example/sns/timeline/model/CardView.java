@@ -2,6 +2,8 @@ package com.example.sns.timeline.model;
 
 import java.util.List;
 
+import com.example.sns.comment.model.Comment;
+import com.example.sns.comment.model.CommentView;
 import com.example.sns.post.model.Post;
 import com.example.sns.user.model.User;
 
@@ -10,11 +12,8 @@ public class CardView {
 	
 	private User user; // 글을 쓴 사람		${card}
 	private Post post;
+	private List<CommentView> commentList;
 	
-	
-	
-	
-//	private List<Comment> commentList;
 //	private List<Like> likeList;
 	
 	//getters, setters
@@ -30,5 +29,12 @@ public class CardView {
 	public void setPost(Post post) {
 		this.post = post;
 	}
+	public List<CommentView> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<CommentView> commentList) {
+		this.commentList = commentList;
+	}
+
 	
 }

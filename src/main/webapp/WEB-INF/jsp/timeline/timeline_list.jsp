@@ -30,19 +30,22 @@
 				 <c:forEach var="card" items="${cardViewList}">	
 					<div class="d-flex justify-content-between bg-light pl-3 pr-3">	
 				 		<div>${card.user.name}</div>
-					 	<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${post.id}">
+					 	<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${card.post.id}">
 									<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 						</a>	
 					</div>	
 					 <div class="d-flex justift-content-conter">
-					 	<img alt="업로드" src="${post.imagePath}" width="400">
-					 	${post.imagePath}
+					 	<img alt="업로드" src="${card.post.imagePath}" width="400">
 					 </div> 
 					 <div>
-					 	<span class="content">${post.content}</span>
+					 	<span class="content">${card.post.content}</span>
 					 </div>
-					 <div>
-						 <input class="comment" type="text" placeholder="댓글쓰기"> <button class="commentBtn btn btn-light" type="button"  data-post-id="${post.id}">게시</button>
+					 <c:forEach var="comment" items="${cardViewList.commentViewList}">
+					 	<div>${comment.user.name}</div>	
+					 	<div>${comment.comment.content}</div>	
+					  </c:forEach>
+					 <div class="d-flex">
+						 <input class="comment form-control" type="text" placeholder="댓글쓰기"> <button class="commentBtn btn btn-light" type="button"  data-post-id="${card.post.id}">게시</button>
 					 </div>
 				 </c:forEach>
 			
