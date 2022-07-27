@@ -2,7 +2,6 @@ package com.example.sns.timeline.model;
 
 import java.util.List;
 
-import com.example.sns.comment.model.Comment;
 import com.example.sns.comment.model.CommentView;
 import com.example.sns.post.model.Post;
 import com.example.sns.user.model.User;

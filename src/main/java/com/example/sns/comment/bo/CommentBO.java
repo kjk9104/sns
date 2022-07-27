@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.sns.comment.dao.CommentDAO;
 import com.example.sns.comment.model.Comment;
 import com.example.sns.comment.model.CommentView;
-import com.example.sns.post.bo.PostBO;
 import com.example.sns.user.bo.UserBO;
 import com.example.sns.user.model.User;
 
@@ -19,8 +18,6 @@ public class CommentBO {
 	private CommentDAO commentDAO;
 	@Autowired
 	private UserBO userBO;
-	@Autowired
-	private PostBO postBO;
 	
 	public void getCommentByPostIdanduserIdandContent(int postId,int userId,String content) {
 		commentDAO.insertCommentByPostIdanduserIdandContent(postId,userId,content);
@@ -40,6 +37,7 @@ public class CommentBO {
 			CommentView comment = new CommentView();
 			// 댓글 리스트
 			comment.setComment(comments);
+			
 			// 유저 정보
 			User user = userBO.getUserById(comments.getUserId());
 			comment.setUser(user);

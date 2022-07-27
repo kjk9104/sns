@@ -26,10 +26,10 @@
 		</div>
 		<%-- 타임라인 영역 --%>
 		<div>
-			
+				
 				 <c:forEach var="card" items="${cardViewList}">	
-					<div class="d-flex justify-content-between bg-light pl-3 pr-3">	
-				 		<div>${card.user.name}</div>
+					<div class="d-flex justify-content-between bg-light pl-3 pr-3 mt-5">	
+				 		<strong>${card.user.name}</strong>
 					 	<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${card.post.id}">
 									<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 						</a>	
@@ -40,9 +40,20 @@
 					 <div>
 					 	<span class="content">${card.post.content}</span>
 					 </div>
-					 <c:forEach var="comment" items="${cardViewList.commentViewList}">
-					 	<div>${comment.user.name}</div>	
-					 	<div>${comment.comment.content}</div>	
+					 <div class="d-flex mb-3 mt-3">
+					 	<div class="mr-3"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" width="20"></div>
+					 	<div>좋아요</div>
+					 </div>
+					 
+					 
+					 <div class="bg-light">
+					 	<strong>댓글 쓰기</strong>
+					 </div>
+					 <c:forEach var="comment" items="${card.commentList}">
+						 <div class="d-flex">
+						 	<div class="mr-5"><strong>${comment.user.name}</strong></div>	
+						 	<div>${comment.comment.content}</div>
+						 </div>	
 					  </c:forEach>
 					 <div class="d-flex">
 						 <input class="comment form-control" type="text" placeholder="댓글쓰기"> <button class="commentBtn btn btn-light" type="button"  data-post-id="${card.post.id}">게시</button>

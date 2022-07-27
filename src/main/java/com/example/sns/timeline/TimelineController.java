@@ -1,6 +1,5 @@
 package com.example.sns.timeline;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,6 @@ public class TimelineController {
 				Model model) {
 			
 			List<CardView> cardViewList = timelineBO.generateCardViewList();
-			
-			
-//			model.addAttribute("postList", postList);
-//			card.CommentView
 			
 			model.addAttribute("cardViewList", cardViewList);
 			model.addAttribute("viewName", "timeline/timeline_list");

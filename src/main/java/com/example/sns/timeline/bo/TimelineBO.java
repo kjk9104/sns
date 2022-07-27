@@ -42,7 +42,7 @@ public class TimelineBO {
 			card.setUser(user);
 			
 			List<CommentView> commentViewList = commentBO.generateCommentVeiwListByPostId(post.getId());
-			card.setCommentList(commentViewList);
+			card.setCommentList(commentViewList); //card.commentViewList.user.name
 			
 			cardViewList.add(card);
 		}
