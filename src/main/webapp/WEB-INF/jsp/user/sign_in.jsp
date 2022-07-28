@@ -9,7 +9,7 @@
 		<input id="loninId" name="loginId" class="form-control-lg" type="text" placeholder="ID">
 		<input id="pasworrd" name="password" class="form-control-lg" type="password" placeholder="password">
 		<input id="loginForm" class="btn test-light form-control-lg btn-primary" type="submit" value="로그인"/>
-		<a class="btn form-control-lg btn-secondary" href="#" type="button">회원가입</a>
+		<a class="btn form-control-lg btn-secondary" href="sign_up_view" type="button">회원가입</a>
 	</div>
 	</form>
 </div>

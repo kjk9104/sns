@@ -41,7 +41,9 @@
 					 	<span class="content">${card.post.content}</span>
 					 </div>
 					 <div class="d-flex mb-3 mt-3">
-					 	<div class="mr-3"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" width="20"></div>
+<%-- 					 /like/${card.post.id} --%>
+					 	<div class="mr-2"><a href="#" class="likeBtn"><img class="likeOff" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" width="20"></a></div>
+					 	<div class="mr-2"><a href="#" class="likeBtn"><img class="likeOn d-none" src="https://www.iconninja.com/files/527/809/128/heart-icon.png" width="20"></a></div>
 					 	<div>좋아요</div>
 					 </div>
 					 
@@ -162,13 +164,23 @@ $(document).ready(function(){
 				}
 			}
 			, error: function(e){
-				alert("통신의 실패 했습니다.");
+				alert("통신이 실패 했습니다.");
 			}
 		});
 		
 	});
 		
-		
+	$('.likeBtn').on('click', function(){
+		if(	$('.likeOn').hasClass('none')){
+			$('.likeOff').addClass('d-none');
+			$('.likeOn').removeClass('d-none');
+		}
+		if(	$('.likeOff').hasClass('none')){
+			$('.likeOn').addClass('d-none');
+			$('.likeOff').removeClass('d-none');
+		}
+	
+	});	
 		
 
 
