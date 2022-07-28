@@ -1,5 +1,6 @@
 package com.example.sns.like;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,17 +19,19 @@ public class LikeRestController {
 	private LikeBO likeBO;
 	
 	// 좋아요/해제
-	@RequestMapping("/like/{postid}")
+	@RequestMapping("/like/{postId}")
 	public Map<String, Object> like(
 			@PathVariable int postId
 			,HttpSession session
 			){
 		 
+		Map<String, Object> result = new HashMap<>();
 		Object userIdObject = session.getAttribute("userId");
 		int userId = (int) userIdObject;
 		
-		likeBO.addLike(postId, userId);
+		likeBO.onAndOffLike(postId, userId);
+		result.put("result", "success");
 		
-		return null;
+		return result;
 	}
 }

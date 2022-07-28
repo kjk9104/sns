@@ -2,6 +2,8 @@ package com.example.sns.timeline;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +23,13 @@ public class TimelineController {
 	// http://localhost:8080/timeline/timeline_list_view
 		@RequestMapping("/timeline_list_view")
 		public String postCreateView(
-				Model model) {
+				Model model, HttpSession session) {
 			
-			List<CardView> cardViewList = timelineBO.generateCardViewList();
+			List<CardView> cardViewList = timelineBO.generateCardViewList((Integer) session.getAttribute("userId"));
 			
 			model.addAttribute("cardViewList", cardViewList);
 			model.addAttribute("viewName", "timeline/timeline_list");
+			
 			return "/template/layout";
 		}
 		

@@ -11,10 +11,20 @@ public class LikeBO {
 	@Autowired
 	private LikeDAO likeDAO;
 	
-	public void addLike(
+	public void onAndOffLike(
 			int postId
 			,int userId
 			) {
-		likeDAO.insertLike(postId,userId);
+		if(likeDAO.selectLike(postId, userId) == false) {
+			likeDAO.insertLike(postId,userId);
+		} else if(likeDAO.selectLike(postId, userId) ) {
+			likeDAO.deleteLike(postId, userId);
+		}
+	}
+	
+	public boolean getLikeByPostIdAndUserId(
+			int postId
+			,int userId) {
+		return likeDAO.selectLike(postId,userId);
 	}
 }

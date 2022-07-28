@@ -41,9 +41,17 @@
 					 	<span class="content">${card.post.content}</span>
 					 </div>
 					 <div class="d-flex mb-3 mt-3">
-<%-- 					 /like/${card.post.id} --%>
-					 	<div class="mr-2"><a href="#" class="likeBtn"><img class="likeOff" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" width="20"></a></div>
-					 	<div class="mr-2"><a href="#" class="likeBtn"><img class="likeOn d-none" src="https://www.iconninja.com/files/527/809/128/heart-icon.png" width="20"></a></div>
+					 	<c:choose>
+					 		<c:when test="${card.filledLike eq false}">
+					 			<div class="mr-2"><a href="#" class="likeBtn" data-post-id="${card.post.id}"><img class="likeOff" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" width="20"></a></div>
+					 		</c:when>
+					 		<c:when test="${card.filledLike}">
+					 			<div class="mr-2"><a href="#" class="likeBtn" data-post-id="${card.post.id}"><img class="likeOff" src="https://www.iconninja.com/files/527/809/128/heart-icon.png" width="20"></a></div>
+					 		</c:when>
+					 	</c:choose>
+					 	<c:if test="${card.likeCount ne 0}">
+					 		${card.likeCount} 
+					 	</c:if>
 					 	<div>좋아요</div>
 					 </div>
 					 
@@ -170,21 +178,28 @@ $(document).ready(function(){
 		
 	});
 		
-	$('.likeBtn').on('click', function(){
-		if(	$('.likeOn').hasClass('none')){
-			$('.likeOff').addClass('d-none');
-			$('.likeOn').removeClass('d-none');
-		}
-		if(	$('.likeOff').hasClass('none')){
-			$('.likeOn').addClass('d-none');
-			$('.likeOff').removeClass('d-none');
-		}
 	
-	});	
+	$('.likeBtn').on('click', function(e){
+		e.preventDefault();
 		
+			let postId = $(this).data('post-id');
+		$.ajax({
+			url : "/like/"+postId		
+			,success : function(data){
+				if(data.result = "success"){
+					location.reload(true); // 좋아요 누르고 나서 새로 고침
+				}else{
+					alert("통신 실패");
+				}
+			}	
+			,error : function(e){
+				alert("통신이 실패 했습니다.");
+			}
+						
+		});
+	});
 
-
-
+	
 });
 </script>
 
