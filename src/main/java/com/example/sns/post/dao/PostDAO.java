@@ -21,4 +21,6 @@ public interface PostDAO {
 	public List<Post> selectPostList();
 	
 	public Post selectPostById(int id);
+	
+	public void deletePostByPostId(@Param("postId")int postId, @Param("userId")int userId);
 }

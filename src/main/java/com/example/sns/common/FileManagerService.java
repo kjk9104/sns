@@ -1,6 +1,7 @@
 package com.example.sns.common;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,4 +38,29 @@ public class FileManagerService {
 		
 		return null;
 	}
+	public void deleteFile(String imagePath) throws IOException{
+		
+		imagePath = imagePath.replace("/images", "");
+		Path path = Paths.get(FILE_UPLODE_PATH + imagePath);
+		if (Files.exists(path)) { // 이미지 파일이 있으면 삭제
+			Files.delete(path);
+		}
+		
+		path = path.getParent();
+		if(Files.exists(path)) { // 폴더가 있으면 삭제
+			Files.delete(path);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

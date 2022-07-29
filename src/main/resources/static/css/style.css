@@ -18,3 +18,14 @@ footer>div{
 	height: 500px;
 }
 .contents-box {width:650px;}
+
+a:hover{
+	color: black;
+	text-decoration: none;
+}
+a{
+	color: black;
+}
+.comdelBtn{
+	width: 100%;
+}
