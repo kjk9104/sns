@@ -146,9 +146,6 @@ $(document).ready(function(){
 		formData.append("writeTextArea", writeTextArea);
 		formData.append("file", $('#file')[0].files[0]);
 		
-		console.log(writeTextArea);
-		console.log(file);
-		console.log(formData);
 		
 		$.ajax({
 			type : "POST"
@@ -181,8 +178,6 @@ $(document).ready(function(){
 			return;
 		}
 		
-		console.log(postId);
-		console.log(comment);
 		
 		$.ajax({
 			type :  "post"
@@ -267,14 +262,23 @@ $(document).ready(function(){
 		alert("댓글을 삭제하시겠습니까?");
 		let commentId = $(this).data('comment-id');
 		
-		alert(commentId);
-// 		$.ajax({
-// 			type : "delete"
-// 			,url : "/comment/delete"
-// 			,data : {
-				
-// 			}
-// 		});	
+		$.ajax({
+			type : "delete"
+			,url : "/comment/delete"
+			,data : {
+				"commentId" :  commentId
+			}
+			,success :  function(data){
+				if(data.result == "success"){
+					location.reload(true);
+				} else {
+					alert("댓글삭제 실패");
+				}
+			}
+			,error : function(e){
+				alert("통신 실패");
+			}
+		});	
 
 	});
 	

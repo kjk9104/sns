@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +47,19 @@ public class CommentRestController {
 			result.put("result", "success");
 		
 			return result;
-				
+	}
+	
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("commentId") int commentId
+			){
+		Map<String, Object> result = new HashMap<>();
+		
+		commetBO.deleteCommentById(commentId);
+		
+		result.put("result", "success");
+		
+		return result;
 		
 	}
 }

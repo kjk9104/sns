@@ -9,6 +9,7 @@ public class User {
 	private String password;
 	private String name;
 	private String eMail;
+	private String profile;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -40,6 +41,12 @@ public class User {
 	}
 	public void seteMail(String eMail) {
 		this.eMail = eMail;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 	public Date getCreatedAt() {
 		return createdAt;

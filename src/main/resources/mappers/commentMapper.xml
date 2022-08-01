@@ -37,6 +37,6 @@
  		DELETE FROM
  			`comment`
  		WHERE
- 			`postId`= #{postId} 
+ 			`id`= #{commentId} 
  	</delete>
  </mapper>

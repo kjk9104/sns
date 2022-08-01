@@ -8,8 +8,18 @@
 	</div>
 	<div class="login-info text-light">
 		<c:if test="${not empty userId}">
+			<c:if test="${empty profile}">
+				<div>
+					<img class="rounded-circle" alt="프로필 사진" src="https://cdn.icon-icons.com/icons2/2760/PNG/512/profile_icon_176363.png" width="70">
+				</div>
+			</c:if>
+			<c:if test="${not empty profile}">
+				<div>
+					<img alt="프로필 사진" src="${profile}">
+				</div>
+			</c:if>
 			<span>${userName}님 안녕하세요</span> 
-			<a href="/user/sign_in_view">로그아웃</a>
+			<a href="/user/sign_out">로그아웃</a>
 		</c:if>
 	</div>
 </div>

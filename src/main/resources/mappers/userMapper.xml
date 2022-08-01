@@ -67,4 +67,12 @@
  		WHERE
  			`id`=#{Id}
  	</select>
+ 	<update id="updateUserById">
+ 		UPDATE 
+			`user` 
+		SET 
+			`profile` = #{profile}
+			,`updatedAt` = NOW()
+		WHERE `id`= #{id} 
+ 	</update>
  </mapper>

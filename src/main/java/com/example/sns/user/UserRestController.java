@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.sns.user.bo.UserBO;
 import com.example.sns.user.model.User;
@@ -78,6 +79,7 @@ public class UserRestController {
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
+			session.setAttribute("profile", user.getProfile());
 			
 			result.put("result", "success");
 		} else {
@@ -85,5 +87,21 @@ public class UserRestController {
 		}
 		
 		return result;
+	}
+	
+	@RequestMapping("/add_profile")
+	public Map<String, Object> getProfile(
+			HttpSession session
+			,@RequestParam(value="profile", required=false) MultipartFile profile
+			){
+		
+			Map<String, Object> result = new HashMap<>();
+			int userId = (int) session.getAttribute("userId");
+			String userLoginId = (String) session.getAttribute("userLoginId");
+			userBO.updateUserById(userId, profile, userLoginId);
+			User user = userBO.getUserById(userId);
+			session.setAttribute("profile", user.getProfile());
+			result.put("result", "success");
+			return result;
 	}
 }
