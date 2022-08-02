@@ -24,7 +24,7 @@ public class LikeRestController {
 			@PathVariable int postId
 			,HttpSession session
 			){
-		 
+		// ###########
 		Map<String, Object> result = new HashMap<>();
 		Object userIdObject = session.getAttribute("userId");
 		int userId = (int) userIdObject;
